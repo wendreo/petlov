@@ -1,5 +1,6 @@
 name: Cypress e2e Tests
-on: [push]
+on:
+  workflow_dispatch: # Allows manual trigger of workflow from GitHub UI
 jobs:
   tests:
     runs-on: ubuntu-latest
