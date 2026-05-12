@@ -3,6 +3,9 @@ on: [push]
 jobs:
   tests:
     runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:26.0.0
+      options: --user 1001
     # Runs tests in parallel with matrix strategy https://on.cypress.io/parallelization
     # https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/run-job-variations
     # Also see warning here https://github.com/cypress-io/github-action#parallel
@@ -21,9 +24,10 @@ jobs:
           # Starts web server for E2E tests - replace with your own server invocation
           # https://docs.cypress.io/app/continuous-integration/overview#Boot-your-server
           #start: npm start # Starts server - replace with your own if needed
-          install-command: npm install # Installs dependencies - replace with your own if needed 
-          wait-on: 'https://petlov.vercel.app' # Waits for above
-          # Records to Cypress Cloud 
+          install-command: npm install # Installs dependencies - replace with your own if needed
+          wait-on: "https://petlov.vercel.app" # Waits for above
+          browser: chrome # Runs tests in Chrome - replace with your own if needed
+          # Records to Cypress Cloud
           # https://docs.cypress.io/cloud/get-started/setup
           record: true
           parallel: true # Runs test in parallel using settings above
